@@ -11,6 +11,7 @@ class ProviderConfiguration extends PluginRoutingKeyConfiguration implements Pro
     const CFG_PROVIDER_SECRET_KEY = 'SECURITY_TOKEN_PROVIDER_%s_SECRET';
     const CFG_PROVIDER_PUB_KEY = 'SECURITY_TOKEN_PROVIDER_%s_PUBLIC';
     const CFG_PROVIDER_PASSPHRASE = 'SECURITY_TOKEN_PROVIDER_%s_PASSPHRASE';
+    const CFG_PROVIDER_LIFETIME_DEFAULT = 'SECURITY_TOKEN_PROVIDER_%s_LIFETIME';
 
     /**
      * {@inheritDoc}
@@ -30,7 +31,7 @@ class ProviderConfiguration extends PluginRoutingKeyConfiguration implements Pro
             return self::SECRET_DEFAULT;
         }
 
-        return $result;
+        return $this->getKey($result);
     }
 
     /**
@@ -43,7 +44,7 @@ class ProviderConfiguration extends PluginRoutingKeyConfiguration implements Pro
             return $this->getSecretKey();
         }
 
-        return $result;
+        return $this->getKey($result);
     }
 
     /**
@@ -52,5 +53,30 @@ class ProviderConfiguration extends PluginRoutingKeyConfiguration implements Pro
     public function getPassphrase(): ?string
     {
         return $this->get(self::CFG_PROVIDER_PASSPHRASE);
+    }
+
+    /**
+     * TODO: Temporary solution
+     *
+     *
+     * @param string $key
+     *
+     * @return string
+     */
+    protected function getKey(string $key): string
+    {
+        if(!is_file($key)) {
+            return $key;
+        }
+
+        return file_get_contents($key);
+    }
+
+    /**
+     * @return int
+     */
+    public function getLifetimeDefault(): int
+    {
+        return $this->get(self::CFG_PROVIDER_LIFETIME_DEFAULT, 0, false);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Micro\Plugin\Security\Token\Encoder;
+namespace Micro\Plugin\Security\Business\Token\Encoder;
 
 interface EncoderInterface
 {

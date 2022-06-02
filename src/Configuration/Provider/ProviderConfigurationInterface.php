@@ -30,4 +30,9 @@ interface ProviderConfigurationInterface
      * @return string|null
      */
     public function getPassphrase(): ?string;
+
+    /**
+     * @return int
+     */
+    public function getLifetimeDefault(): int;
 }

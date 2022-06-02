@@ -4,6 +4,7 @@ namespace Micro\Plugin\Security;
 
 use Micro\Framework\Kernel\Configuration\Exception\InvalidConfigurationException;
 use Micro\Framework\Kernel\Configuration\PluginConfiguration;
+use Micro\Plugin\Security\Configuration\Provider\ProviderConfiguration;
 use Micro\Plugin\Security\Configuration\Provider\ProviderConfigurationInterface;
 use Micro\Plugin\Security\Configuration\SecurityPluginConfigurationInterface;
 
@@ -28,12 +29,14 @@ class SecurityPluginConfiguration extends PluginConfiguration implements Securit
     {
         if(!in_array($providerName, $this->getProviderList())) {
             throw new InvalidConfigurationException(
-                printf('Security provider "%s" is defined in the configuration "%s". Available providers: %s ',
+                printf('Security provider "%s" is defined in the configuration "%s". Available providers: [%s] ',
                     $providerName,
                     self::CFG_PROVIDER_LIST,
-                    implode(',', $this->getProviderList())
+                    implode(', ', $this->getProviderList())
                 )
             );
         }
+
+        return new ProviderConfiguration($this->configuration, $providerName);
     }
 }
