@@ -10,14 +10,9 @@ interface SecurityPluginConfigurationInterface
     const PROVIDER_DEFAULT = 'default';
 
     /**
-     * @return array<string>
-     */
-    public function getProviderList(): array;
-
-    /**
      * @param string $providerName
      *
      * @return ProviderConfigurationInterface
      */
-    public function getProviderConfiguration(string $providerName): ProviderConfigurationInterface;
+    public function getProviderConfiguration(string $providerName = self::PROVIDER_DEFAULT): ProviderConfigurationInterface;
 }

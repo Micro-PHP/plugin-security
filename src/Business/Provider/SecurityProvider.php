@@ -4,7 +4,6 @@ namespace Micro\Plugin\Security\Business\Provider;
 
 use Micro\Plugin\Security\Business\Token\Decoder\DecoderFactoryInterface;
 use Micro\Plugin\Security\Configuration\Provider\ProviderConfigurationInterface;
-use Micro\Plugin\Security\Exception\TokenExpiredException;
 use Micro\Plugin\Security\Business\Token\Encoder\EncoderFactoryInterface;
 use Micro\Plugin\Security\Token\Token;
 use Micro\Plugin\Security\Token\TokenInterface;
@@ -27,25 +26,14 @@ class SecurityProvider implements SecurityProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function generateToken(array $sourceData, int $lifetime = null): TokenInterface
+    public function generateToken(array $sourceData): TokenInterface
     {
-        $createdAt = time();
-        $lifetime = $lifetime ?: $this->providerConfiguration->getLifetimeDefault();
-
-        $tokenContainerData = [
-            TokenInterface::TOKEN_PARAM_DATA => $sourceData,
-            TokenInterface::TOKEN_PARAM_LIFETIME  => $lifetime,
-            TokenInterface::TOKEN_PARAM_CREATED_AT => $createdAt,
-        ];
-
         $generatedTokenString = $this->encoderFactory
             ->create($this->providerConfiguration)
-            ->encode($tokenContainerData);
+            ->encode($sourceData);
 
         return $this->createToken(
             $generatedTokenString,
-            $createdAt,
-            $lifetime,
             $sourceData
         );
     }
@@ -60,31 +48,21 @@ class SecurityProvider implements SecurityProviderInterface
             ->decode($encoded);
 
         return $this->createToken(
-            $encoded,
-            createdAt: $decoded[TokenInterface::TOKEN_PARAM_CREATED_AT ],
-            lifetime: $decoded[TokenInterface::TOKEN_PARAM_LIFETIME],
-            tokenData: (array) $decoded[TokenInterface::TOKEN_PARAM_DATA]
+            encoded: $encoded,
+            tokenData: $decoded
         );
     }
 
     /**
      * @param string $encoded
-     * @param int $createdAt
-     * @param int $lifetime
      * @param array $tokenData
      *
      * @return Token
      */
-    protected function createToken(string $encoded, int $createdAt, int $lifetime, array $tokenData): TokenInterface
+    protected function createToken(string $encoded, array $tokenData): TokenInterface
     {
-        if($lifetime > 0 && (time() > $lifetime + $createdAt)) {
-            throw new TokenExpiredException($encoded);
-        }
-
         return new Token(
             source: $encoded,
-            createdAt: $createdAt,
-            lifetime: $lifetime,
             parameters: $tokenData
         );
     }

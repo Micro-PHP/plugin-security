@@ -27,7 +27,7 @@ class ProviderConfiguration extends PluginRoutingKeyConfiguration implements Pro
     public function getSecretKey(): string
     {
         $result = $this->get(self::CFG_PROVIDER_SECRET_KEY);
-        if(!$result && $this->getEncryptionAlgorithm() === self::HS256) {
+        if(!$result && $this->getEncryptionAlgorithm() === self::ALGO_DEFAULT) {
             return self::SECRET_DEFAULT;
         }
 
@@ -40,7 +40,7 @@ class ProviderConfiguration extends PluginRoutingKeyConfiguration implements Pro
     public function getPublicKey(): string
     {
         $result = $this->get(self::CFG_PROVIDER_PUB_KEY);
-        if(!$result && $this->getEncryptionAlgorithm() === self::HS256) {
+        if(!$result && $this->getEncryptionAlgorithm() === self::ALGO_DEFAULT) {
             return $this->getSecretKey();
         }
 
