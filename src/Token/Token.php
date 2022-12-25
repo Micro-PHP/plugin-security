@@ -6,14 +6,10 @@ class Token implements TokenInterface
 {
     /**
      * @param string $source
-     * @param int $createdAt
-     * @param int $lifetime
      * @param array $parameters
      */
     public function __construct(
         private readonly string $source,
-        private readonly int $createdAt,
-        private readonly int $lifetime,
         private readonly array $parameters
     )
     {
@@ -22,25 +18,17 @@ class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLifetime(): int
-    {
-        return $this->lifetime;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getParameters(): array
     {
         return $this->parameters;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParameter(string $parameterName, mixed $default): mixed
+    {
+        return $this->parameters[$parameterName] ?? $default;
     }
 
     /**

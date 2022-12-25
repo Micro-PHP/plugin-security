@@ -1,6 +1,6 @@
 <?php
 
-namespace Micro\Plugin\Security\Business\Token\Context;
+namespace Micro\Plugin\Security\Business\Token\Configuration;
 
 class TokenConfiguration
 {

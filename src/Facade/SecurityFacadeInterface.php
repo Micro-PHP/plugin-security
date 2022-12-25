@@ -2,24 +2,26 @@
 
 namespace Micro\Plugin\Security\Facade;
 
+use Firebase\JWT\ExpiredException;
 use Micro\Plugin\Security\Token\TokenInterface;
 
 interface SecurityFacadeInterface
 {
     /**
-     * @param array $content
+     * @param array $parameters
      * @param string|null $providerName
-     * @param int|null $lifeTime
      *
      * @return TokenInterface
      */
-    public function generateToken(array $content, string $providerName = null, int $lifeTime = null): TokenInterface;
+    public function generateToken(array $parameters, string $providerName = null): TokenInterface;
 
     /**
      * @param string $encoded
      * @param string|null $providerName
      *
      * @return TokenInterface
+     *
+     * @throws ExpiredException
      */
     public function decodeToken(string $encoded, string $providerName = null): TokenInterface;
 }

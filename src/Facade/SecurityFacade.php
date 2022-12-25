@@ -11,13 +11,12 @@ class SecurityFacade implements SecurityFacadeInterface
 
     public function __construct(private readonly SecurityProviderFactoryInterface $securityProviderFactory)
     {
-
     }
 
     /**
      * {@inheritDoc}
      */
-    public function generateToken(array $parameters, string $providerName = null, int $lifeTime = null): TokenInterface
+    public function generateToken(array $parameters, string $providerName = null): TokenInterface
     {
         if(!$providerName) {
             $providerName = SecurityPluginConfigurationInterface::PROVIDER_DEFAULT;
@@ -25,7 +24,7 @@ class SecurityFacade implements SecurityFacadeInterface
 
         return $this->securityProviderFactory
             ->create($providerName)
-            ->generateToken($parameters, $lifeTime);
+            ->generateToken($parameters);
     }
 
     /**

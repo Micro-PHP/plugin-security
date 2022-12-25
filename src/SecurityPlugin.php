@@ -3,7 +3,9 @@
 namespace Micro\Plugin\Security;
 
 use Micro\Component\DependencyInjection\Container;
-use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
+use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
+use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
 use Micro\Plugin\Security\Business\Provider\SecurityProviderFactory;
 use Micro\Plugin\Security\Business\Provider\SecurityProviderFactoryInterface;
 use Micro\Plugin\Security\Business\Token\Decoder\DecoderFactoryInterface;
@@ -17,8 +19,10 @@ use Micro\Plugin\Security\Business\Token\Encoder\EncoderFactoryInterface;
 /**
  * @method SecurityPluginConfigurationInterface configuration()
  */
-class SecurityPlugin extends AbstractPlugin
+class SecurityPlugin implements DependencyProviderInterface, ConfigurableInterface
 {
+    use PluginConfigurationTrait;
+
     /**
      * {@inheritDoc}
      */
