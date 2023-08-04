@@ -2,7 +2,7 @@
 
 namespace Micro\Plugin\Security;
 
-use Micro\Framework\Kernel\Configuration\PluginConfiguration;
+use Micro\Framework\BootConfiguration\Configuration\PluginConfiguration;
 use Micro\Plugin\Security\Configuration\Provider\ProviderConfiguration;
 use Micro\Plugin\Security\Configuration\Provider\ProviderConfigurationInterface;
 use Micro\Plugin\Security\Configuration\SecurityPluginConfigurationInterface;

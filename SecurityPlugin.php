@@ -2,10 +2,10 @@
 
 namespace Micro\Plugin\Security;
 
-use Micro\Component\DependencyInjection\Container;
-use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
-use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
-use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
+use Micro\Framework\DependencyInjection\Container;
+use Micro\Framework\BootConfiguration\Plugin\ConfigurableInterface;
+use Micro\Framework\BootDependency\Plugin\DependencyProviderInterface;
+use Micro\Framework\BootConfiguration\Plugin\PluginConfigurationTrait;
 use Micro\Plugin\Security\Business\Provider\SecurityProviderFactory;
 use Micro\Plugin\Security\Business\Provider\SecurityProviderFactoryInterface;
 use Micro\Plugin\Security\Business\Token\Decoder\DecoderFactoryInterface;

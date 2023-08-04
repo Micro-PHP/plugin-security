@@ -2,7 +2,7 @@
 
 namespace Micro\Plugin\Security\Configuration\Provider;
 
-use Micro\Framework\Kernel\Configuration\PluginRoutingKeyConfiguration;
+use Micro\Framework\BootConfiguration\Configuration\PluginRoutingKeyConfiguration;
 
 class ProviderConfiguration extends PluginRoutingKeyConfiguration implements ProviderConfigurationInterface
 {

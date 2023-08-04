@@ -1,12 +1,11 @@
 {
     "name": "micro/plugin-security",
     "description": "Micro Framework: Security component",
-    "type": "library",
+    "type": "micro-plugin",
     "license": "MIT",
-    "version": "1.0",
     "autoload": {
         "psr-4": {
-            "Micro\\Plugin\\Security\\": "src/"
+            "Micro\\Plugin\\Security\\": "/"
         }
     },
     "authors": [
@@ -17,5 +16,6 @@
     ],
     "require": {
         "firebase/php-jwt": "^6"
-    }
+    },
+    "minimum-stability": "dev"
 }
