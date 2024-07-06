@@ -6,11 +6,11 @@ use Micro\Plugin\Security\Business\Provider\SecurityProviderFactoryInterface;
 use Micro\Plugin\Security\Configuration\SecurityPluginConfigurationInterface;
 use Micro\Plugin\Security\Token\TokenInterface;
 
-class SecurityFacade implements SecurityFacadeInterface
+readonly class SecurityFacade implements SecurityFacadeInterface
 {
-
-    public function __construct(private readonly SecurityProviderFactoryInterface $securityProviderFactory)
-    {
+    public function __construct(
+        private SecurityProviderFactoryInterface $securityProviderFactory
+    ) {
     }
 
     /**
@@ -38,7 +38,6 @@ class SecurityFacade implements SecurityFacadeInterface
 
         return $this->securityProviderFactory
             ->create($providerName)
-            ->decodeToken($encoded)
-            ;
+            ->decodeToken($encoded);
     }
 }

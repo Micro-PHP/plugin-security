@@ -15,7 +15,7 @@ interface DecoderInterface
      *
      * @return array
      *
-     * @throws InvalidArgumentException     Provided key/key-array was empty or malformed
+     * @throws \InvalidArgumentException    Provided key/key-array was empty or malformed
      * @throws DomainException              Provided JWT is malformed
      * @throws UnexpectedValueException     Provided JWT was invalid
      * @throws SignatureInvalidException    Provided JWT was invalid because the signature verification failed

@@ -4,7 +4,7 @@ namespace Micro\Plugin\Security\Business\Token\Encoder;
 
 use Firebase\JWT\JWT;
 
-class JWTEncoder implements EncoderInterface
+readonly class JWTEncoder implements EncoderInterface
 {
     /**
      * @param string $privateKey
@@ -12,11 +12,10 @@ class JWTEncoder implements EncoderInterface
      * @param string|null $passphrase
      */
     public function __construct(
-        private readonly string $privateKey,
-        private readonly string $encryptAlgorithm,
-        private readonly null|string $passphrase = null,
-    )
-    {
+        private string $privateKey,
+        private string $encryptAlgorithm,
+        private null|string $passphrase = null,
+    ) {
     }
 
     /**

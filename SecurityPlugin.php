@@ -23,9 +23,6 @@ class SecurityPlugin implements DependencyProviderInterface, ConfigurableInterfa
 {
     use PluginConfigurationTrait;
 
-    /**
-     * {@inheritDoc}
-     */
     public function provideDependencies(Container $container): void
     {
         $container->register(SecurityFacadeInterface::class, function () {

@@ -2,17 +2,16 @@
 
 namespace Micro\Plugin\Security\Token;
 
-class Token implements TokenInterface
+readonly class Token implements TokenInterface
 {
     /**
      * @param string $source
      * @param array $parameters
      */
     public function __construct(
-        private readonly string $source,
-        private readonly array $parameters
-    )
-    {
+        private string $source,
+        private array $parameters
+    ) {
     }
 
     /**

@@ -8,7 +8,7 @@ use Micro\Plugin\Security\Business\Token\Encoder\EncoderFactoryInterface;
 use Micro\Plugin\Security\Token\Token;
 use Micro\Plugin\Security\Token\TokenInterface;
 
-class SecurityProvider implements SecurityProviderInterface
+readonly class SecurityProvider implements SecurityProviderInterface
 {
     /**
      * @param EncoderFactoryInterface $encoderFactory
@@ -16,11 +16,10 @@ class SecurityProvider implements SecurityProviderInterface
      * @param ProviderConfigurationInterface $providerConfiguration
      */
     public function __construct(
-        private readonly EncoderFactoryInterface $encoderFactory,
-        private readonly DecoderFactoryInterface $decoderFactory,
-        private readonly ProviderConfigurationInterface $providerConfiguration,
-    )
-    {
+        private EncoderFactoryInterface $encoderFactory,
+        private DecoderFactoryInterface $decoderFactory,
+        private ProviderConfigurationInterface $providerConfiguration,
+    ) {
     }
 
     /**

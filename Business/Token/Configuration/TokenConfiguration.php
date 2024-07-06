@@ -2,7 +2,7 @@
 
 namespace Micro\Plugin\Security\Business\Token\Configuration;
 
-class TokenConfiguration
+readonly class TokenConfiguration
 {
     /**
      * @var int
@@ -14,7 +14,7 @@ class TokenConfiguration
      * @param int $lifetime
      */
     public function __construct(
-        private readonly array $parameters,
+        private array $parameters,
         private int $lifetime = 0
     )
     {

@@ -5,17 +5,16 @@ namespace Micro\Plugin\Security\Business\Token\Decoder;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class JWTDecoder implements DecoderInterface
+readonly class JWTDecoder implements DecoderInterface
 {
     /**
      * @param string $publicKey
      * @param string $encryptAlgorithm
      */
     public function __construct(
-        private readonly string $publicKey,
-        private readonly string $encryptAlgorithm
-    )
-    {
+        private string $publicKey,
+        private string $encryptAlgorithm
+    ) {
     }
 
     /**
